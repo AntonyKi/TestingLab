@@ -1,0 +1,36 @@
+{
+  "name": "prinfo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "start": "node dist/src/index.js",
+    "dev": "nodemon --exec ts-node src/index.ts --watch src",
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
+  "author": "Toxa",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/jest": "^25.1.1",
+    "@types/node": "^13.5.3",
+    "@types/supertest": "^2.0.8",
+    "jest": "^25.1.0",
+    "nock": "^11.7.2",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2",
+    "ts-jest": "^25.1.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/lru-cache": "^5.1.0",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "lru-cache": "^5.1.1"
+  }
+}
