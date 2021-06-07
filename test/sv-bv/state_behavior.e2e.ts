@@ -28,7 +28,7 @@ const api = {
 
 const stocksService = new StocksService(cache, api)
 
-describe("getInfo", () => {
+xdescribe("getInfo", () => {
     beforeEach(() => {
         spyOn(cache, "get")
         spyOn(cache, "put")
@@ -54,7 +54,7 @@ describe("getInfo", () => {
         expect(api.getPrice).not.toHaveBeenCalled
     })
 
-    xit("getInfo uses external api", async() => {
+    it("getInfo uses external api", async() => {
         cacheResponse = undefined
         const info = await stocksService.getInfo("WII")
 

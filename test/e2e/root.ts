@@ -13,7 +13,7 @@ app.listen(port);
 
 // axios.defaults.adapter = require('axios/lib/adapters/http');
 
-describe("Stockprice api", () =>{
+xdescribe("Stockprice api", () =>{
   xit("should return correct types", async() =>{
     const res = await request(app).
     get(`/api/v1/prices?company=WIX`);

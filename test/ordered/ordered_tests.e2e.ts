@@ -2,7 +2,7 @@ import {CacheService, Info} from "../../src/price"
 
 const cache = new CacheService<string, Info>(60*1000*10)
 
-describe("get", () => {
+xdescribe("get", () => {
     it("should return nothing on no such entry", async() => {
         const emptyInfo = await cache.get("WII")
 
@@ -33,7 +33,7 @@ describe("get", () => {
     })
 })
 
-describe("put", () => {
+xdescribe("put", () => {
     it("should set new key properly", async() => {
         const info = await cache.get("WII")
 
@@ -42,7 +42,7 @@ describe("put", () => {
     })
 })
 
-describe("empty", () => {
+xdescribe("empty", () => {
     it("should remove anything ", async() => {
         await cache.empty
         await cache.put("WIII", {name: "WIII2", price: 7.91})

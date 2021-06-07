@@ -1,0 +1,9 @@
+{
+    "input": [
+        ["WII", {"name": "WIX", "price": 11.1}, "WII", 11.1],
+        ["WII", {"name": "WIX", "price": 11.1}, "WOW", "undefined"],
+        ["APPL", {"name": "Apple", "price": 1922.3}, "APPL", 1922.3],
+        ["TENC", {"name": "Tencent", "price": 141.1}, "TENC", 141.1],
+        ["FED", {"name": "FedEx", "price": 244.377}, "Fffeeeeddddd", "undefined"]
+    ]
+}

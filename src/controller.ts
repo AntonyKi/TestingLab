@@ -28,7 +28,7 @@ app.get("/api/v1/prices", async (req: Request, res: Response, next: NextFunction
   }
 });
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) =>{
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
 
   res.status(500).send('Something broke!');
