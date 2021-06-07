@@ -14,7 +14,7 @@ app.listen(port);
 // axios.defaults.adapter = require('axios/lib/adapters/http');
 
 describe("Stockprice api", () =>{
-  it("should return correct types", async() =>{
+  xit("should return correct types", async() =>{
     const res = await request(app).
     get(`/api/v1/prices?company=WIX`);
     expect(typeof res.body.price).toBe('number');
@@ -24,20 +24,20 @@ describe("Stockprice api", () =>{
   const cache = new CacheService<string, Info>(10*1000*60);
   const stocks = new StocksService(cache, api);
 
-  it("should use cache ", async() => {
+  xit("should use cache ", async() => {
     await stocks.getInfo("WIX");
     const info = await cache.get("WIX");
     expect(info.name).toEqual("Wix.com Ltd.");
   });
 
-  it("should return correct info on getInfo", async() => {
+  xit("should return correct info on getInfo", async() => {
     const res = await axios
       .get(`http://localhost:${port}/api/v1/prices?company=WIX`);
     expect(res.data.name).toEqual("Wix.com Ltd.");
     //expect(res.data.price).toEqual(148.28);
   });
 
-  it("should return not found on searching non existing company name",
+  xit("should return not found on searching non existing company name",
   async() =>{
     const res = await axios
       .get(`http://localhost:${port}/api/v1/prices?company=hbjsadfkasdf`);
@@ -45,7 +45,7 @@ describe("Stockprice api", () =>{
     expect(res.status).toEqual(200);
   });
 
-  it("should return bad request on bad query", async() => {
+  xit("should return bad request on bad query", async() => {
     const res = await axios
       .get(`http://localhost:${port}/api/v1/prices?knsb=sdg`);
     expect(res.data).toEqual("Bad request query");
@@ -79,11 +79,11 @@ describe("Stockprice api", () =>{
         "01. symbol": "WII",
         "05. price": "145.2100",
     }
-});
-  it("should return correct info on getInfo with mocked api", async() => {
+  });
+
+  xit("should return correct info on getInfo with mocked api", async() => {
     const res = await axios.get(`http://localhost:${port}/api/v1/prices?company=WII`);
     expect(res.data.name).toEqual("Wix.com Ltd.");
     expect(res.data.price).toEqual(145.21);
-
   });
 });

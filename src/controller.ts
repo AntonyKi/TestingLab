@@ -8,22 +8,22 @@ const app = express();
 app.use(json());
 
 app.get("/api/v1/prices", async (req: Request, res: Response, next: NextFunction) =>{
-  try{
-    console.error(JSON.stringify(req.query));
+  try {
+    //console.error(JSON.stringify(req.query));
     const company = req.query.company;
-    if( company == undefined){
+    if (company == undefined) {
       return res.status(400).send("Bad request query");
     }
     let info = await prices.getInfo(company);
-    if(info == null){
+    if (info == null) {
       res.status(200).send("No such company found");
-    }else{
+    } else {
       res.status(200).json({
         name: info.name,
         price: info.price
       });
     }
-  }catch(err){
+  } catch(err) {
     next(err);
   }
 });
@@ -33,4 +33,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) =>{
 
   res.status(500).send('Something broke!');
 });
+
 export default app;

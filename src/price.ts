@@ -15,11 +15,11 @@ type Symbol = {
   symbol: string
 }
 
-class ApiService{
+class ApiService {
   constructor(private apiKey = API_KEY){
-
   }
-  async getSymbol(company: string): Promise<Symbol|null>{
+
+  async getSymbol(company: string): Promise<Symbol|null> {
     const res = await axios.get(`https://www.alphavantage.co/query?`+
       `function=SYMBOL_SEARCH`+
       `&keywords=${company}`+
@@ -30,7 +30,7 @@ class ApiService{
       return {name, symbol};
   }
 
-  async getPrice(symbol: string): Promise<number>{
+  async getPrice(symbol: string): Promise<number> {
     const res = await axios.get(`https://www.alphavantage.co/`+
       `query?function=GLOBAL_QUOTE`+
       `&symbol=${symbol}`+
@@ -38,59 +38,57 @@ class ApiService{
     const price = parseFloat(res.data["Global Quote"]["05. price"]);
     return price;
   }
-
 }
 
 class CacheService<K, V> {
 
   private cache: any;
 
-  constructor(age: number){
+  constructor(age: number) {
     const options: any = {max: 500
       , length: (n: any, key: any) => n * 2 + key.length
-      , dispose: (key: any, n: any) => n.close()
+      , dispose: () => {}
       , maxAge: age};
     this.cache = new LRU(options);
   }
-  async get(key: K): Promise<V>{
+  async get(key: K): Promise<V> {
     return await this.cache.get(key);
   }
 
-  async put(key: K, info: V): Promise<void>{
+  async put(key: K, info: V): Promise<void> {
     await this.cache.set(key, info);
   }
 
-  async empty(): Promise<void>{
+  async empty(): Promise<void> {
     await this.cache.reset();
   }
 }
 
-class StocksService{
+class StocksService {
 
   constructor(private cache = new CacheService<string, Info>(60*1000*10),
               private api = new ApiService()){
   }
 
-  async getInfo(company: string): Promise<Info|null>{
+  async getInfo(company: string): Promise<Info|null> {
     const resCache: Info = await this.cache.get(company);
-    if(!resCache){
+    if (!resCache) {
       const s = await this.api.getSymbol(company);
-      if(s == null){
+      if (s == null) {
         return null;
       }
       const price = await this.api.getPrice(s.symbol);
       const name: string = s.name;
-      const finalInfo:Info = {
+      const finalInfo: Info = {
         name,
         price
       };
       this.cache.put(company, finalInfo);
       return finalInfo;
-    }else{
+    } else {
       return resCache;
     }
   }
-
 }
 
 export {CacheService, ApiService, Info};
