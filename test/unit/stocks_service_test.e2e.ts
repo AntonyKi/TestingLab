@@ -27,7 +27,7 @@ const api = {
 
 const stocksService = new StocksService(cache, api)
 
-xdescribe("getInfo", () => {
+describe("getInfo", () => {
     it("getInfo", async() => {
         const info = await stocksService.getInfo("WII")
 

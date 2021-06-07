@@ -28,7 +28,7 @@ const api = {
 
 const stocksService = new StocksService(cache, api)
 
-xdescribe("getInfo", () => {
+describe("getInfo", () => {
     beforeEach(() => {
         spyOn(cache, "get")
         spyOn(cache, "put")

@@ -4,7 +4,7 @@ import nock from "nock"
 const apiKey = process.env.API_KEY;
 const apiService = new ApiService()
 
-xdescribe("getSymbol", () => {
+describe("getSymbol", () => {
 
     nock('https://www.alphavantage.co', {allowUnmocked: true})
     .get('/query')
@@ -28,7 +28,7 @@ xdescribe("getSymbol", () => {
     })
 })
 
-xdescribe("getPrice", () => {
+describe("getPrice", () => {
     nock('https://www.alphavantage.co', {allowUnmocked: true})
     .get('/query')
     .query({

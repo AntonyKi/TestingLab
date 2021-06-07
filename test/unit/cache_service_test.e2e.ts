@@ -2,7 +2,7 @@ import {CacheService, Info} from "../../src/price"
 
 const cache = new CacheService<string, Info>(60*1000*10)
 
-xdescribe("get", () => {
+describe("get", () => {
     beforeEach(async() => {
         await cache.empty
     });
@@ -32,7 +32,7 @@ xdescribe("get", () => {
     });
 });
 
-xdescribe("put", () => {
+describe("put", () => {
     beforeEach(async() => {
         await cache.empty
     });
@@ -47,7 +47,7 @@ xdescribe("put", () => {
     });
 });
 
-xdescribe("empty", () => {
+describe("empty", () => {
     beforeEach(async() => {
         await cache.empty
     });
